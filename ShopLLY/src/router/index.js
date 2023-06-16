@@ -1,15 +1,27 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
-
+import HomePage from '@/components/HomePage'
+import CreateItem from '@/components/CreateItem'
+import ItemDetail from '@/components/ItemDetail'
 Vue.use(Router)
 
 export default new Router({
   routes: [
     {
       path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
+      name: 'HomePage',
+      component: HomePage
+    },
+    {
+      path: '/CreateItem',
+      name: 'CreateItem',
+      component: CreateItem
+    },
+    {
+      path: '/ItemDetail/:id',
+      name: 'ItemDetail',
+      component: ItemDetail,
+      props: true
     }
   ]
 })

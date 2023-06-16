@@ -1,6 +1,6 @@
-# vue-sandbox
-
-> A Vue 2 Sandbox
+# shoppinglist
+> I did not know this is how you do comments in md
+> A small shopping list web app
 
 ## Build Setup
 
