@@ -1,17 +1,37 @@
 <template>
+  <div>
     <router-link class="event-link" :to="{ name: 'ItemDetail', params: { id: shoppingList.id } }">
     <div class="event-card -shadow">
-      <span class="eyebrow">@{{ shoppingList.name }} on {{ shoppingList.description }}</span>
-      <h4 class="title">{{ shoppingList.title }}</h4>
+      <span class="eyebrow"> <!--The problematoc axios call-->
+        {{ shoppingList.name }} : {{ shoppingList.description }}
+      </span>
     </div>
   </router-link>
+  <button @click="deleteItem">Delete</button>
+  <button @click="editItem"> Edit </button>
+</div>
+    
 </template>
 
 <script>
     export default {
     props: {
         shoppingList: Object
-    }
+    },
+    methods: {
+      deleteItem() {
+        if (window.confirm('Are you sure you want to delete this item?')) {
+        // User confirmed, proceed with deletion
+        this.$store.dispatch('moduleList/deleteShoppingItem', this.shoppingList.id) //I want to pass in the shoppingItem so we delete it
+        //! MOST DEF SHOULD FIND A BETTER WAY OF DOING THIS
+        //? Triggers a reload of the current route. 
+        //this.$router.go();
+            }
+         }, 
+      editItem() {
+        this.$router.push('/EditItem');
+      }
+      }
     }
 </script>
 

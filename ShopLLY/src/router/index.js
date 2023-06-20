@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HomePage from '@/components/HomePage'
-import CreateItem from '@/components/CreateItem'
-import ItemDetail from '@/components/ItemDetail'
+import HomePage from '@/views/HomePage'
+import CreateItem from '@/views/CreateItem'
+import ItemDetail from '@/views/ItemDetail'
+import EditItem from '@/views/EditItem'
 Vue.use(Router)
 
 export default new Router({
@@ -22,6 +23,11 @@ export default new Router({
       name: 'ItemDetail',
       component: ItemDetail,
       props: true
-    }
+    },
+    {
+      path: '/EditItem',
+      name: 'EditItem',
+      component: EditItem
+    },
   ]
 })

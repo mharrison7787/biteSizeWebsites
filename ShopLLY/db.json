@@ -1,18 +1,3 @@
 {
-    "shoppingLists": [
-        {
-            "name": "Eggs",
-            "id": "1",
-            "description": "Its yellow in the middle",
-            "amount": "2",
-            "selectedPriority": "High"
-        },
-        {
-            "name": "Bacon",
-            "id": "3",
-            "description": "Its crispy ham",
-            "amount": "5",
-            "selectedPriority": "High"
-        }
-    ]
+  "shoppingListsDB": []
 }
