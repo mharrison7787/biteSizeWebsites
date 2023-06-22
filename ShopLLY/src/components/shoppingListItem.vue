@@ -22,14 +22,14 @@
       deleteItem() {
         if (window.confirm('Are you sure you want to delete this item?')) {
         // User confirmed, proceed with deletion
-        this.$store.dispatch('moduleList/deleteShoppingItem', this.shoppingList.id) //I want to pass in the shoppingItem so we delete it
-        //! MOST DEF SHOULD FIND A BETTER WAY OF DOING THIS
-        //? Triggers a reload of the current route. 
-        //this.$router.go();
+        this.$store.dispatch('moduleList/deleteShoppingItem', this.shoppingList.id) 
             }
          }, 
       editItem() {
-        this.$router.push('/EditItem');
+        this.$router.push({
+          name: "EditItem",
+          params: { id: this.shoppingList.id }
+        })
       }
       }
     }

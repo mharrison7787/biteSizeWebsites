@@ -25,9 +25,10 @@ export default new Router({
       props: true
     },
     {
-      path: '/EditItem',
+      path: '/EditItem/:id',
       name: 'EditItem',
-      component: EditItem
+      component: EditItem,
+      props: true
     },
   ]
 })

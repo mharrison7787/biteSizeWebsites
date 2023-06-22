@@ -24,5 +24,8 @@ export default {
     },
     deleteShoppingItem(id) {
         return apiClient.delete('/shoppingListsDB/' + id)
+    },
+    editShoppingItem(shoppingItem) {
+        return apiClient.put('/shoppingListsDB', shoppingItem)
     }
 }

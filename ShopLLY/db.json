@@ -1,3 +1,11 @@
 {
-  "shoppingListsDB": []
+  "shoppingListsDB": [
+    {
+      "name": "Pikmin 4",
+      "id": 6102814,
+      "description": "Red Blue Yellow",
+      "selectedPriority": "low",
+      "amount": 7
+    }
+  ]
 }

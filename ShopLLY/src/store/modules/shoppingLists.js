@@ -23,6 +23,10 @@ export const mutations = {
     //Sets the shopping item state with the current shopping item state
     SET_SHOPPING_ITEM(state, shoppingItem) {
         state.shoppingItem = shoppingItem
+    },
+    //Should go through the each shoppingItem in the Lists to find which id of shoppingIteme Matches the updatedShoppingItem
+    EDIT_SHOPPING_LIST_ITEM(state, shoppingItem) {
+        state.shoppingLists.update(shoppingItem)
     }
 }
 export const actions = {
@@ -39,6 +43,14 @@ export const actions = {
         }
         ).catch(error => {
             console.log("Error in deleteShoppingItem " + error.response)
+        })
+    },
+    editShoppingItem({ commit }, shoppingItem) {
+        return ShoppingService.editShoppingItem(shoppingItem).then(() => {
+            commit('EDIT_SHOPPING_LIST_ITEM')
+        }
+        ).catch(error => {
+            console.log("Error in editShoppingItem " + error.response)
         })
     },
     //Gets the shopping list data from DB and sets the state
