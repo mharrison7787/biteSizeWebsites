@@ -3,7 +3,10 @@
     <nav><Logo></Logo></nav>
     <h1>Welcome to Shop It List!</h1>
     <button @click="goToCreateItem">Create a New Item</button>
-    <shoppingListItem v-for="shoppingItem in shoppingLists" :key="shoppingItem.id" :shoppingList ="shoppingItem"></shoppingListItem>
+    <shoppingListItem class="high" v-for="shoppingItem in highShoppingItems" :key="shoppingItem.id" :shoppingList="shoppingItem"></shoppingListItem>
+    <shoppingListItem class="med" v-for="shoppingItem in medShoppingItems" :key="shoppingItem.id" :shoppingList="shoppingItem"></shoppingListItem>
+    <shoppingListItem class="low" v-for="shoppingItem in lowShoppingItems" :key="shoppingItem.id" :shoppingList="shoppingItem"></shoppingListItem>
+    <shoppingListItem class="complete" v-for="shoppingItem in completedShoppingItems" :key="shoppingItem.id" :shoppingList="shoppingItem"></shoppingListItem>
     <router-view/> 
   </div>
 </template>
@@ -24,7 +27,26 @@ export default {
     this.$store.dispatch('moduleList/fetchShoppingLists')
   }, 
   //creates the componets for the store module (ShoppingLists)
-  computed: mapState("moduleList", {shoppingLists:'shoppingLists'}),
+  computed: { ...mapState("moduleList", {
+    shoppingLists:'shoppingLists'
+  }),
+  completedShoppingItems() {
+      return this.shoppingLists.filter(item => item.completedStatus === true);
+    },
+  incompletedShoppingItems() {
+      return this.shoppingLists.filter(item => item.completedStatus === false);
+    },
+  highShoppingItems() {
+    return this.shoppingLists.filter(item => item.selectedPriority === 'high' && item.completedStatus === false);
+  },
+  medShoppingItems() {
+    return this.shoppingLists.filter(item => item.selectedPriority === 'med' && item.completedStatus === false);
+  },
+  lowShoppingItems() {
+    return this.shoppingLists.filter(item => item.selectedPriority === 'low' && item.completedStatus === false);
+  }
+  },
+  
   //Routes to create item when clicked on the button
   methods: {
     goToCreateItem() {
@@ -64,5 +86,22 @@ button {
   border: 2px solid blue;
   font-family: 'Courier New', Courier, monospace;
 }
+.complete {
+  text-decoration: line-through;
+  background-color: lightgrey;
+}
+
+.high {
+  background-color: red
+}
+
+.med {
+  background-color: orange
+}
+
+.low {
+  background-color: green
+}
+
 
 </style>

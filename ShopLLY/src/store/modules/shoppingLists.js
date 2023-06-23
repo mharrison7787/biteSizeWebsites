@@ -27,6 +27,9 @@ export const mutations = {
     //Should go through the each shoppingItem in the Lists to find which id of shoppingIteme Matches the updatedShoppingItem
     EDIT_SHOPPING_LIST_ITEM(state, shoppingItem) {
         state.shoppingLists.update(shoppingItem)
+    },
+    DONE_SHOPPING_LIST_ITEM(state, shoppingItem) {
+        state.shoppingItem.completedStatus = true;
     }
 }
 export const actions = {
@@ -47,10 +50,19 @@ export const actions = {
     },
     editShoppingItem({ commit }, shoppingItem) {
         return ShoppingService.editShoppingItem(shoppingItem).then(() => {
-            commit('EDIT_SHOPPING_LIST_ITEM')
+            commit('EDIT_SHOPPING_LIST_ITEM', shoppingItem)
         }
         ).catch(error => {
             console.log("Error in editShoppingItem " + error.response)
+        })
+    },
+    //!!!!HERE
+    itemDone({ commit }, shoppingItem) {
+        shoppingItem.completedStatus = true;
+        return ShoppingService.editShoppingItem(shoppingItem).then(() => {
+            commit('DONE_SHOPPING_LIST_ITEM', shoppingItem)
+        }).catch(error => {
+            console.log("Error in itemDone " + error.response)
         })
     },
     //Gets the shopping list data from DB and sets the state

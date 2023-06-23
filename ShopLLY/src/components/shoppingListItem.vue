@@ -9,6 +9,7 @@
   </router-link>
   <button @click="deleteItem">Delete</button>
   <button @click="editItem"> Edit </button>
+  <button @click="doneItem">Completed</button>
 </div>
     
 </template>
@@ -30,7 +31,10 @@
           name: "EditItem",
           params: { id: this.shoppingList.id }
         })
-      }
+      },
+      doneItem() {
+      this.$store.dispatch('moduleList/itemDone', this.shoppingList)
+    }
       }
     }
 </script>
@@ -41,6 +45,7 @@
   margin-bottom: 24px;
   transition: all 0.2s linear;
   cursor: pointer;
+  font-weight: bold;
 }
 .event-card:hover {
   transform: scale(1.01);

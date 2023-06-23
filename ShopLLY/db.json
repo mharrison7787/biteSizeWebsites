@@ -1,11 +1,60 @@
 {
   "shoppingListsDB": [
     {
-      "name": "Pikmin 4",
-      "id": 6102814,
-      "description": "Red Blue Yellow",
+      "name": "Eggs",
+      "id": 8109740,
+      "description": "A bakers dozen",
+      "selectedPriority": "high",
+      "amount": 1,
+      "completedStatus": true
+    },
+    {
+      "name": "Bacon",
+      "id": 613246,
+      "description": "Strips not thins",
+      "selectedPriority": "high",
+      "amount": 3,
+      "completedStatus": false
+    },
+    {
+      "name": "Pancake Batter",
+      "id": 1053213,
+      "description": "Bisquick",
+      "selectedPriority": "med",
+      "amount": 1,
+      "completedStatus": false
+    },
+    {
+      "name": "French Fries",
+      "id": 7614150,
+      "description": "They are ",
       "selectedPriority": "low",
-      "amount": 7
+      "amount": 2,
+      "completedStatus": false
+    },
+    {
+      "name": "Fix",
+      "id": 2480197,
+      "description": "Them",
+      "selectedPriority": "low",
+      "amount": 3,
+      "completedStatus": false
+    },
+    {
+      "name": "",
+      "id": 6090317,
+      "description": "",
+      "selectedPriority": "",
+      "amount": "",
+      "completedStatus": false
+    },
+    {
+      "name": "doggy",
+      "id": 9620518,
+      "description": "",
+      "selectedPriority": "",
+      "amount": "",
+      "completedStatus": false
     }
   ]
 }

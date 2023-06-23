@@ -20,12 +20,17 @@ export default {
     },
     //post the newly created item to the database shopping list
     postShoppingItem(shoppingItem) {
+        //console.log(shoppingItem)
         return apiClient.post('/shoppingListsDB', shoppingItem)
     },
     deleteShoppingItem(id) {
         return apiClient.delete('/shoppingListsDB/' + id)
     },
     editShoppingItem(shoppingItem) {
-        return apiClient.put('/shoppingListsDB', shoppingItem)
+        //console.log(shoppingItem)
+        return apiClient.put('/shoppingListsDB/' + shoppingItem.id, shoppingItem)
+    },
+    itemDone(shoppingItem) {
+        return apiClient.put('/shoppingListsDB/' + shoppingItem.id, shoppingItem)
     }
 }

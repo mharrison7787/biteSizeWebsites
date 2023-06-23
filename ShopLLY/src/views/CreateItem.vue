@@ -42,6 +42,7 @@ import Logo from "../components/Logo.vue"
       description: '', //The description of the item
       amounts: [], //How much of the item
       selectedPriority: '', //The priority of the item
+      completedStatus: true,
       shoppingItem: this.createShoppingItemObject() //Takes all the prev data to create a new shopping item object with that data
     };
   },
@@ -76,6 +77,7 @@ import Logo from "../components/Logo.vue"
       description: '',
       selectedPriority: '',
       amount: '',
+      completedStatus: false
       }
     },
     //Sets the boxed choice to be the selected priority for the item object

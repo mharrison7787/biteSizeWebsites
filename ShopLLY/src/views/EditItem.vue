@@ -2,13 +2,13 @@
     <div>
         <form @submit.prevent="editShoppingItem">
             <label>Rename Your Item:</label>
-            <input v-model="name" >
+            <input v-model="shoppingItem.name" >
             <br>
             <label>New Description For Your Item:</label>
-            <input v-model="description">
+            <input v-model="shoppingItem.description">
             <br>
             <Label>New Amount:</Label>
-            <select>
+            <select v-model="shoppingItem.amount">
                 <option v-for="amount in amounts" :value="amount" :key="amount">{{ amount }}</option>
             </select>
             <br>
@@ -70,14 +70,11 @@ export default {
 },
   methods: {
     editShoppingItem() {
-     this.$store.dispatch('moduleList/editShoppingItem').then(() => {
-      this$.router.push({
-        name: "ItemDetail",
-        params: {id: this.shoppingItem.id}
-      })
-      this.shoppingItem = this.editShoppingItemObject()
+     this.$store.dispatch('moduleList/editShoppingItem', this.shoppingItem).then(() => {
+      this.$router.push('/');
+      //this.shoppingItem = this.editShoppingItemObject()
      }).catch(() => {
-      console.log ("Error in editShoppingItem in EditItem.vue line 67" + error.response)
+      console.log ("Error in editShoppingItem in EditItem.vue line 77")
      })
     },
     print() {
@@ -85,13 +82,13 @@ export default {
     },
     generateOptions() {
       for (let i = 1; i <= 10; i++) {
-        this.amounts.push(i);
+          this.amounts.push(i);
       }
     },
     handleCheckboxChange(value) {
       this.shoppingItem.selectedPriority = value
     }, 
-    editShoppingItemObject() {
+   /*  editShoppingItemObject() {
       console.log("Inside editShoppingItemObject line 82")
       return {
         name: '',
@@ -100,7 +97,7 @@ export default {
         selectedPriority: '',
         amount: ''
       }
-    }
+    } */
   }
 }
 </script>
