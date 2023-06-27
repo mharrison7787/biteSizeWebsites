@@ -1,0 +1,12 @@
+{
+  "shoppingListsDB": [
+    {
+      "name": "hgjghjlghjlghjl",
+      "id": 3389180,
+      "description": "They are yellow in the middle",
+      "amount": 1,
+      "selectedPriority": "med",
+      "completedStatus": false
+    }
+  ]
+}
