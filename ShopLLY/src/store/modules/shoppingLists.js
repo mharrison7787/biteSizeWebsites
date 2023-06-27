@@ -30,6 +30,9 @@ export const mutations = {
     },
     DONE_SHOPPING_LIST_ITEM(state, shoppingItem) {
         state.shoppingItem.completedStatus = true;
+    },
+    UNDONE_SHOPPING_LIST_ITEM(state, shoppingItem) {
+        state.shoppingItem.completedStatus = false;
     }
 }
 export const actions = {
@@ -38,6 +41,8 @@ export const actions = {
     createShoppingItem({ commit }, shoppingItem) {
         return ShoppingService.postShoppingItem(shoppingItem).then(() => {
             commit('ADD_SHOPPING_LIST_ITEM', shoppingItem)
+        }).catch(error => {
+            console.log("Error in createShoppingItem found in shoppingLists module Error found " + error.response)
         })
     },
     deleteShoppingItem({ commit }, id) {
@@ -45,24 +50,32 @@ export const actions = {
             commit('DELETE_SHOPPING_LIST_ITEM', id)
         }
         ).catch(error => {
-            console.log("Error in deleteShoppingItem " + error.response)
+            console.log("Error in deleteShoppingItem found in shoppingLists module Error found " + error.response)
         })
     },
     editShoppingItem({ commit }, shoppingItem) {
+        console.log(shoppingItem)
         return ShoppingService.editShoppingItem(shoppingItem).then(() => {
             commit('EDIT_SHOPPING_LIST_ITEM', shoppingItem)
         }
         ).catch(error => {
-            console.log("Error in editShoppingItem " + error.response)
+            console.log("Error in editShoppingItem found in shoppingLists module Error found " + error.response)
         })
     },
-    //!!!!HERE
     itemDone({ commit }, shoppingItem) {
         shoppingItem.completedStatus = true;
-        return ShoppingService.editShoppingItem(shoppingItem).then(() => {
+        return ShoppingService.itemDone(shoppingItem).then(() => {
             commit('DONE_SHOPPING_LIST_ITEM', shoppingItem)
         }).catch(error => {
-            console.log("Error in itemDone " + error.response)
+            console.log("Error in itemDone found in shoppingLists module Error found " + error.response)
+        })
+    },
+    itemUnDone({ commit }, shoppingItem) {
+        shoppingItem.completedStatus = false;
+        return ShoppingService.itemUnDone(shoppingItem).then(() => {
+            commit('UNDONE_SHOPPING_LIST_ITEM', shoppingItem)
+        }).catch(error => {
+            console.log("Error in itemUnDone found in shoppingLists module Error found " + error.response)
         })
     },
     //Gets the shopping list data from DB and sets the state
@@ -72,7 +85,7 @@ export const actions = {
                 commit('SET_SHOPPING_LISTS', response.data)
             })
             .catch(error => {
-                console.log("Error in Homepage:" + error.response)
+                console.log("Error in fetchShoppingLists found in shoppingLists module Error found " + error.response)
             })
     },
     //Gets the shopping item data from DB and sets the state
@@ -88,7 +101,7 @@ export const actions = {
                     commit('SET_SHOPPING_ITEM', response.data)
                 })
                 .catch(error => {
-                    console.log("Error in ItemDetail", error.response)
+                    console.log("Error in fetchShoppingItem found in shoppingLists module Error found ", error.response)
                 })
         }
     }
@@ -96,6 +109,7 @@ export const actions = {
 export const getters = {
     //Returns a state that returns an id to find the spectific item we are looking for by id
     getItemById: state => id => {
+
         return state.shoppingLists.find(shoppingItem => shoppingItem.id === id)
     }
 }

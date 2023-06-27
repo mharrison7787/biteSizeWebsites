@@ -1,59 +1,74 @@
 {
   "shoppingListsDB": [
     {
+      "name": "Egggggs",
+      "id": 1,
+      "description": "fdfs",
+      "amount": 2,
+      "selectedPriority": "high"
+    },
+    {
       "name": "Eggs",
-      "id": 8109740,
-      "description": "A bakers dozen",
+      "id": 2,
+      "description": "They are yellow in the middle",
       "selectedPriority": "high",
-      "amount": 1,
-      "completedStatus": true
-    },
-    {
-      "name": "Bacon",
-      "id": 613246,
-      "description": "Strips not thins",
-      "selectedPriority": "high",
-      "amount": 3,
+      "amount": 2,
       "completedStatus": false
     },
     {
-      "name": "Pancake Batter",
-      "id": 1053213,
-      "description": "Bisquick",
+      "name": "Eggs",
+      "id": 3,
+      "description": "They are yellow in the middle",
+      "selectedPriority": "high",
+      "amount": 2,
+      "completedStatus": false
+    },
+    {
+      "name": "Eggs",
+      "id": 4,
+      "description": "They are yellow in the middle",
       "selectedPriority": "med",
-      "amount": 1,
+      "amount": 2,
       "completedStatus": false
     },
     {
-      "name": "French Fries",
-      "id": 7614150,
-      "description": "They are ",
+      "name": "Eggs",
+      "id": 5,
+      "description": "They are yellow in the middle",
+      "selectedPriority": "med",
+      "amount": 2,
+      "completedStatus": false
+    },
+    {
+      "name": "Eggs",
+      "id": 6,
+      "description": "They are yellow in the middle",
+      "selectedPriority": "med",
+      "amount": 2,
+      "completedStatus": false
+    },
+    {
+      "name": "Eggs",
+      "id": 7,
+      "description": "They are yellow in the middle",
       "selectedPriority": "low",
       "amount": 2,
       "completedStatus": false
     },
     {
-      "name": "Fix",
-      "id": 2480197,
-      "description": "Them",
+      "name": "Eggs",
+      "id": 8,
+      "description": "They are yellow in the middle",
       "selectedPriority": "low",
-      "amount": 3,
+      "amount": 2,
       "completedStatus": false
     },
     {
-      "name": "",
-      "id": 6090317,
-      "description": "",
-      "selectedPriority": "",
-      "amount": "",
-      "completedStatus": false
-    },
-    {
-      "name": "doggy",
-      "id": 9620518,
-      "description": "",
-      "selectedPriority": "",
-      "amount": "",
+      "name": "Eggs",
+      "id": 9,
+      "description": "They are yellow in the middle",
+      "selectedPriority": "low",
+      "amount": 2,
       "completedStatus": false
     }
   ]

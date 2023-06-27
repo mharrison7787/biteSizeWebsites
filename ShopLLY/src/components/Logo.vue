@@ -10,7 +10,10 @@
     export default {
     methods: {
     goToHomePage() {
-      this.$router.push('/');
+      this.$router.push('/')
+      .catch(error => {
+        console.log("Error in Logo.vue Error founded:" + error)
+      });
     }, 
   }
     }

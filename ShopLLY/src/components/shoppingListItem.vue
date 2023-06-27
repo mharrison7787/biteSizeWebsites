@@ -9,7 +9,8 @@
   </router-link>
   <button @click="deleteItem">Delete</button>
   <button @click="editItem"> Edit </button>
-  <button @click="doneItem">Completed</button>
+  <button v-if="shoppingList.completedStatus === false" @click="doneItem">Completed</button>
+  <button v-if="shoppingList.completedStatus === true" @click="unDoneItem">Undo</button>
 </div>
     
 </template>
@@ -23,7 +24,10 @@
       deleteItem() {
         if (window.confirm('Are you sure you want to delete this item?')) {
         // User confirmed, proceed with deletion
-        this.$store.dispatch('moduleList/deleteShoppingItem', this.shoppingList.id) 
+        this.$store.dispatch('moduleList/deleteShoppingItem', this.shoppingList.id)
+        .catch(error => {
+          console.log("Error in deleteItem found in ShoppingListItem.vue Error founded:" + error)
+        }) 
             }
          }, 
       editItem() {
@@ -34,7 +38,16 @@
       },
       doneItem() {
       this.$store.dispatch('moduleList/itemDone', this.shoppingList)
-    }
+      .catch(error => {
+          console.log("Error in doneItem found in ShoppingListItem.vue Error founded:" + error)
+        }) 
+    }, 
+      unDoneItem() {
+        this.$store.dispatch('moduleList/itemUnDone', this.shoppingList)
+        .catch(error => {
+          console.log("Error in unDoneItem found in ShoppingListItem.vue Error founded:" + error)
+        }) 
+      }
       }
     }
 </script>

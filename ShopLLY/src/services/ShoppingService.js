@@ -32,5 +32,8 @@ export default {
     },
     itemDone(shoppingItem) {
         return apiClient.put('/shoppingListsDB/' + shoppingItem.id, shoppingItem)
-    }
+    },
+    itemUnDone(shoppingItem) {
+        return apiClient.put('/shoppingListsDB/' + shoppingItem.id, shoppingItem)
+    },
 }

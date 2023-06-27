@@ -17,6 +17,9 @@ export default {
  
   created() {
     this.$store.dispatch('moduleList/fetchShoppingItem', this.id)
+    .catch(error => {
+          console.log("Error in created() found in ItemDetail.vue Error founded:" + error)
+        }) 
   },
   computed: mapState("moduleList", {shoppingItem:'shoppingItem'})
 }

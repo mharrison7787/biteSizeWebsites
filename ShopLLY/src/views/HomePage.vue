@@ -50,7 +50,10 @@ export default {
   //Routes to create item when clicked on the button
   methods: {
     goToCreateItem() {
-      this.$router.push('/CreateItem');
+      this.$router.push('/CreateItem')
+      .catch(error => {
+          console.log("Error in goToCreateItem found in HomePage.vue Error founded:" + error)
+        }) 
     }
   }
 }

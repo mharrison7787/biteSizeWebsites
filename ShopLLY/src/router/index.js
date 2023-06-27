@@ -28,7 +28,11 @@ export default new Router({
       path: '/EditItem/:id',
       name: 'EditItem',
       component: EditItem,
-      props: true
+      props(route) {
+        return {
+          id: parseInt(route.params.id) || 0
+        }
+      },
     },
   ]
 })

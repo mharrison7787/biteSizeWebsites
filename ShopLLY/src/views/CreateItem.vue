@@ -4,24 +4,21 @@
         <Logo></Logo>
         <form @submit.prevent="createShoppingItem">
             <label>Name Your Item:</label>
-            <input v-model="shoppingItem.name" type="text" placeholder="Add a name here!">
+            <input v-model="shoppingItem.name" type="text" :placeholder="namePlaceHolderText" :class="{ 'empty' : nameIsEmpty}">
             <br>
             <label>Description For Your Item:</label>
             <input v-model="shoppingItem.description" type="text" placeholder="Add a description here!">
             <br>
-            <Label>How Many:</Label>
+            <Label :class = "{'amountEmpty' : amountIsEmpty}"> {{ amountPlaceHolderText }}: </Label>
             <select v-model="shoppingItem.amount">
                 <option v-for="amount in amounts" :value="amount" :key="amount">{{ amount }}</option>
             </select>
             <br>
             <br>
-            <Label>Priority:</Label>
-            <input type="checkbox" @change="handleCheckboxChange('high')">
-            <label> High</label>
-            <input type="checkbox"  @change="handleCheckboxChange('med')">
-            <label> Med</label>
-            <input type="checkbox"  @change="handleCheckboxChange('low')">
-            <label> Low</label>
+            <Label :class = "{'priorityEmpty' : priorityIsEmpty}">{{ priorityPlaceHolderText }}:</Label>
+            <input type="radio" v-model = "shoppingItem.selectedPriority" value = "high"> high
+            <input type="radio" v-model = "shoppingItem.selectedPriority" value = "med"> med
+            <input type="radio" v-model = "shoppingItem.selectedPriority" value = "low"> low
             <br>
             <br>
             <button type="submit">All Done!</button>
@@ -43,7 +40,13 @@ import Logo from "../components/Logo.vue"
       amounts: [], //How much of the item
       selectedPriority: '', //The priority of the item
       completedStatus: true,
-      shoppingItem: this.createShoppingItemObject() //Takes all the prev data to create a new shopping item object with that data
+      shoppingItem: this.createShoppingItemObject(), //Takes all the prev data to create a new shopping item object with that data
+      namePlaceHolderText: "Add a name here",
+      amountPlaceHolderText: "Amount",
+      priorityPlaceHolderText: "Prioirty",
+      nameIsEmpty: false,
+      amountIsEmpty: false,
+      priorityIsEmpty: false
     };
   },
   mounted() {
@@ -52,15 +55,30 @@ import Logo from "../components/Logo.vue"
   methods: {
     createShoppingItem() {
       //Calls the action createShoppingItem and when create pushes user to the route of the newly created item
-      this.$store.dispatch('moduleList/createShoppingItem', this.shoppingItem).then(() => {
-        this.$router.push({
+        
+        if (this.shoppingItem.name === "" || !this.shoppingItem.name.trim()) {
+          this.namePlaceHolderText = "Must have a name!"
+          this.nameIsEmpty = true;
+        }
+        else if (this.shoppingItem.amount === "") {
+          this.amountPlaceHolderText = "Must have a amount"
+          this.amountIsEmpty = true;
+        }
+        else if (this.shoppingItem.selectedPriority === "") {
+          this.priorityPlaceHolderText = "Must have a prioirty!"
+          this.priorityIsEmpty = true;
+        }
+        else {
+          this.$store.dispatch('moduleList/createShoppingItem', this.shoppingItem).then(() => {
+          this.$router.push({
           name: "ItemDetail",
           params: { id: this.shoppingItem.id }
         })
         this.shoppingItem = this.createShoppingItemObject()
       }).catch(() => {
-        console.log('There was a problem in CreateItem')
+        console.log('Error in createShoppingItem found in CreateItem.vue')
       })
+        }
     },
     //Gets the 1-10 for the amount and pushes to the select tab
     generateOptions() {
@@ -80,10 +98,6 @@ import Logo from "../components/Logo.vue"
       completedStatus: false
       }
     },
-    //Sets the boxed choice to be the selected priority for the item object
-    handleCheckboxChange(value) {
-      this.shoppingItem.selectedPriority = value
-    }
   }
 }
 
@@ -132,6 +146,21 @@ label {
     color: blue;
     font-family: "Roboto Mono", monospace;
     
+}
+
+.empty::placeholder {
+  font-weight: bolder;
+  color: blue
+}
+
+.amountEmpty {
+  font-weight: bolder;
+  color: blue;
+}
+
+.priorityEmpty {
+  font-weight: bolder;
+  color: blue;
 }
 
 </style>
