@@ -7,13 +7,13 @@
       <label>New Description For Your Item:</label>
       <input v-model="description">
       <br>
-      <Label>New Amount:</Label>
+      <Label :class = "{'amountEmpty' : amountIsEmpty}"> {{ amountPlaceHolderText }}: </Label>
       <select v-model="amounts" :class="{ 'amountEmpty': amountIsEmpty }">
         <option v-for="amount in amounts" :value="amount" :key="amount">{{ amount }}</option>
       </select>
       <br>
       <br>
-      <Label :class="{ 'priorityEmpty': priorityIsEmpty }">New Priority:</Label>
+      <Label :class="{ 'priorityEmpty': priorityIsEmpty }">{{ priorityPlaceHolderText }}:</Label>
       <input type="radio" v-model="selectedPriority" value="high"> high
       <input type="radio" v-model="selectedPriority" value="med"> med
       <input type="radio" v-model="selectedPriority" value="low"> low
@@ -36,11 +36,13 @@ export default {
     {
       type: Number,
       required: true
+    },
+    completedStatus: 
+    {
+      type: Boolean,
+      requred: true
     }
   },
-  //You could add a prop of item_id  to the /edit route you have (if you’re not using a modal) 
-  //and on mounted/created you could add a call to fetch that specific item from your db.json  
-  //file which would solve all of the data being wiped on refresh
   components: {
     Logo
   },
@@ -50,24 +52,27 @@ export default {
       description: '',
       amounts: [],
       selectedPriority: '',
+      completedStatusValue: false,
       namePlaceHolderText: "Add a name here",
-      amountPlaceHolderText: "Amount",
-      priorityPlaceHolderText: "Prioirty",
+      amountPlaceHolderText: "New Amount",
+      priorityPlaceHolderText: "New Priority",
       nameIsEmpty: false,
       amountIsEmpty: false,
       priorityIsEmpty: false
     }
   },
   mounted() {
-    console.log("Mounted Hello")
-    let that = this
-    this.$store.dispatch('moduleList/fetchShoppingItem', this.id).then(() => {
-      let shoppingItem = this.getItemById(this.id)
-      that.name = shoppingItem.name
-      that.description = shoppingItem.description
-    })
-    this.generateOptions();
-  },
+  let that = this;
+  this.$store.dispatch('moduleList/fetchShoppingItem', this.id).then(() => {
+    let shoppingItem = this.getItemById(this.id);
+    that.name = shoppingItem.name;
+    that.description = shoppingItem.description;
+    that.completedStatusValue = this.completedStatus;
+    that.amounts = shoppingItem.amount; // Update amounts
+    that.selectedPriority = shoppingItem.selectedPriority; // Update selectedPriority
+  });
+  this.generateOptions();
+},
   computed: {
     ...mapState("moduleList", [
 
@@ -84,7 +89,7 @@ export default {
         description: this.description,
         amount: this.amounts,
         selectedPriority: this.selectedPriority,
-        completedStatus: this.completedStatus
+        completedStatus: this.completedStatusValue
       }
       if (shoppingItem.name === "" || !shoppingItem.name.trim()) {
         this.namePlaceHolderText = "Must have a name!"
@@ -96,7 +101,7 @@ export default {
         this.priorityPlaceHolderText = "Must have a prioirty!"
         this.priorityIsEmpty = true;
       } else {
-        console.log(shoppingItem)
+        console.log(this.completedStatus)
         this.$store.dispatch('moduleList/editShoppingItem', shoppingItem).then(() => {
           this.$router.push('/');
         }).catch(() => {
@@ -115,16 +120,6 @@ export default {
     handleCheckboxChange(value) {
       this.shoppingItem.selectedPriority = value
     },
-    /*  editShoppingItemObject() {
-       console.log("Inside editShoppingItemObject line 82")
-       return {
-         name: '',
-         id: this.id, //Trying to use the same id as the one passed in
-         description: '',
-         selectedPriority: '',
-         amount: ''
-       }
-     } */
   }
 }
 </script>
@@ -190,4 +185,5 @@ label {
 .priorityEmpty {
   font-weight: bolder;
   color: blue;
-}</style>
+}
+</style>

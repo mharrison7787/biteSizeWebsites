@@ -1,75 +1,36 @@
 {
   "shoppingListsDB": [
     {
-      "name": "Egggggs",
-      "id": 1,
-      "description": "fdfs",
-      "amount": 2,
-      "selectedPriority": "high"
-    },
-    {
       "name": "Eggs",
-      "id": 2,
-      "description": "They are yellow in the middle",
-      "selectedPriority": "high",
-      "amount": 2,
-      "completedStatus": false
-    },
-    {
-      "name": "Eggs",
-      "id": 3,
-      "description": "They are yellow in the middle",
-      "selectedPriority": "high",
-      "amount": 2,
-      "completedStatus": false
-    },
-    {
-      "name": "Eggs",
-      "id": 4,
-      "description": "They are yellow in the middle",
-      "selectedPriority": "med",
-      "amount": 2,
-      "completedStatus": false
-    },
-    {
-      "name": "Eggs",
-      "id": 5,
-      "description": "They are yellow in the middle",
-      "selectedPriority": "med",
-      "amount": 2,
-      "completedStatus": false
-    },
-    {
-      "name": "Eggs",
-      "id": 6,
-      "description": "They are yellow in the middle",
-      "selectedPriority": "med",
-      "amount": 2,
-      "completedStatus": false
-    },
-    {
-      "name": "Eggs",
-      "id": 7,
-      "description": "They are yellow in the middle",
+      "id": 7576722,
+      "description": "They are yellow in the bottom",
+      "amount": 4,
       "selectedPriority": "low",
-      "amount": 2,
       "completedStatus": false
     },
     {
-      "name": "Eggs",
-      "id": 8,
-      "description": "They are yellow in the middle",
-      "selectedPriority": "low",
-      "amount": 2,
+      "name": "Bacon",
+      "id": 2537466,
+      "description": "It is very very crispy ",
+      "selectedPriority": "med",
+      "amount": 10,
       "completedStatus": false
     },
     {
-      "name": "Eggs",
-      "id": 9,
-      "description": "They are yellow in the middle",
+      "name": "Grits",
+      "id": 7910118,
+      "description": "They are grey and delicious",
       "selectedPriority": "low",
-      "amount": 2,
+      "amount": 8,
       "completedStatus": false
+    },
+    {
+      "name": "Toothpaste",
+      "id": 6038588,
+      "description": "The blue and red variety",
+      "selectedPriority": "low",
+      "amount": 7,
+      "completedStatus": true
     }
   ]
 }

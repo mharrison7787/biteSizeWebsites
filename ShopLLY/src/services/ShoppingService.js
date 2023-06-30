@@ -27,7 +27,7 @@ export default {
         return apiClient.delete('/shoppingListsDB/' + id)
     },
     editShoppingItem(shoppingItem) {
-        //console.log(shoppingItem)
+        console.log("In the axios call editShoppingItem:" + shoppingItem.name)
         return apiClient.put('/shoppingListsDB/' + shoppingItem.id, shoppingItem)
     },
     itemDone(shoppingItem) {

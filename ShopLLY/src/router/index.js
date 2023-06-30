@@ -28,6 +28,10 @@ export default new Router({
       path: '/EditItem/:id',
       name: 'EditItem',
       component: EditItem,
+      //The function returns an object with a single property id, 
+      //which is obtained from the route.params.id value. 
+      //It converts the id to an integer using parseInt, 
+      //or defaults to 0 if the id is not a valid integer
       props(route) {
         return {
           id: parseInt(route.params.id) || 0

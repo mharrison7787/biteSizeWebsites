@@ -24,9 +24,10 @@ export const mutations = {
     SET_SHOPPING_ITEM(state, shoppingItem) {
         state.shoppingItem = shoppingItem
     },
-    //Should go through the each shoppingItem in the Lists to find which id of shoppingIteme Matches the updatedShoppingItem
+    //! Array element and update specific elemnt
     EDIT_SHOPPING_LIST_ITEM(state, shoppingItem) {
-        state.shoppingLists.update(shoppingItem)
+        var index = state.shoppingLists.findIndex(item => item.id === shoppingItem.id)
+        state.shoppingLists[index] = shoppingItem
     },
     DONE_SHOPPING_LIST_ITEM(state, shoppingItem) {
         state.shoppingItem.completedStatus = true;
@@ -54,7 +55,7 @@ export const actions = {
         })
     },
     editShoppingItem({ commit }, shoppingItem) {
-        console.log(shoppingItem)
+        console.log("In edit Shopping Item")
         return ShoppingService.editShoppingItem(shoppingItem).then(() => {
             commit('EDIT_SHOPPING_LIST_ITEM', shoppingItem)
         }
@@ -90,12 +91,14 @@ export const actions = {
     },
     //Gets the shopping item data from DB and sets the state
     fetchShoppingItem({ commit, getters }, id) {
+        //Uses getter to see if the item already exist in the store
         var item = getters.getItemById(id)
+        //If item does not equal 0, false, null, undefined aka true
         if (item) {
-            //If we already find the itme then set the state
+            //Set the state to contian the item
             commit('SET_SHOPPING_ITEM', item)
         } else {
-            //If we can not find the item thern find it then set the state 
+            //If we can not find the item then find it then set the state 
             ShoppingService.getShoppingItem(id)
                 .then(response => {
                     commit('SET_SHOPPING_ITEM', response.data)
@@ -107,9 +110,11 @@ export const actions = {
     }
 }
 export const getters = {
-    //Returns a state that returns an id to find the spectific item we are looking for by id
-    getItemById: state => id => {
-
-        return state.shoppingLists.find(shoppingItem => shoppingItem.id === id)
+    getItemById: function (state) {
+        return function (id) {
+            return state.shoppingLists.find(function (shoppingItem) {
+                return shoppingItem.id === id;
+            });
+        };
     }
-}
+};
