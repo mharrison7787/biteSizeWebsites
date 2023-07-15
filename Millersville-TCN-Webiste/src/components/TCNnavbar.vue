@@ -2,20 +2,27 @@
   <div>
     <nav class="navbar">
       <ul class="navbar-list">
-        <li class="navbar-item">HOME</li>
-        <li class="navbar-item">MEETINGS</li>
+        <li class="navbar-item"><router-link to="/">HOME</router-link></li>
+        <li class="navbar-item"><router-link to="/MeetingsPage">MEETINGS</router-link></li>
         <li class="navbar-item"></li>
         <li class="navbar-item">
-          <img src="../assets/MU_TCN-logo-min-p-500.png" width="250%">
+          <router-link to="/"><img src="../assets/MU_TCN-logo-min-p-500.png" width="250%"> </router-link>
         </li>
         <li class="navbar-item"></li>
-        <li class="navbar-item">JOB FAIR</li>
-        <li class="navbar-item">CONTACT</li>
+        <li class="navbar-item"> <router-link to="/JobFairPage">JOB FAIR</router-link></li>
+        <li class="navbar-item"><router-link to="/ContactPage">CONTACT</router-link></li>
       </ul>
     </nav>
   </div>
 </template>
 
+<script>
+
+export default {
+  name: 'TCNnavbar',
+  // Rest of the component options
+};
+</script>
 <style>
 body {
   margin: 0;
