@@ -2,15 +2,15 @@
   <div>
     <nav class="navbar">
       <ul class="navbar-list">
-        <li class="navbar-item">HOME</li>
-        <li class="navbar-item">MEETINGS</li>
+        <li class="navbar-item clickable">HOME</li>
+        <li class="navbar-item clickable">MEETINGS</li>
         <li class="navbar-item"></li>
-        <li class="navbar-item">
+        <li class="navbar-item tcn-logo">
           <img src="../assets/MU_TCN-logo-min-p-500.png" width="250%">
         </li>
         <li class="navbar-item"></li>
-        <li class="navbar-item">JOB FAIR</li>
-        <li class="navbar-item">CONTACT</li>
+        <li class="navbar-item clickable">JOB FAIR</li>
+        <li class="navbar-item clickable">CONTACT</li>
       </ul>
     </nav>
   </div>
@@ -28,21 +28,19 @@ body {
   top: 0;
   left: 0;
   right: 0;
-  padding: 23px 0;
-
+  padding: 0 !important;
 }
 
 .navbar-list {
   display: flex;
   list-style: none;
-  padding: 30;
-  margin: 0;
-  justify-content: center;
-  padding-left: 420px;
+  margin: auto;
+  justify-content: right;
 }
 
+
 .navbar-item {
-  padding: 25px 35px;
+  padding: 30px 35px;
   color: white;
   cursor: pointer;
   font-size: 16px;
@@ -55,8 +53,12 @@ body {
 
 }
 
+.navbar-item.clickable:hover {
+  background: #ecb431;
+  color: black;
+}
 
-.navbar-item img {
+.tcn-logo img{
   position: absolute;
   /* Added */
   top: 120%;
